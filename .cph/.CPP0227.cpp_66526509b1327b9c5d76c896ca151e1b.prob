@@ -1,0 +1,1 @@
+{"name":"Local: CPP0227","url":"d:\\Ha Duy Long\\Lap Trinh Co Ban\\C++\\Code PTIT\\CPP0227.cpp","tests":[{"id":1723521781096,"input":"2\n3\n45 48 54 21 89 87 70 78 15\n2\n25 27 23 21","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Ha Duy Long\\Lap Trinh Co Ban\\C++\\Code PTIT\\CPP0227.cpp","group":"local","local":true}
