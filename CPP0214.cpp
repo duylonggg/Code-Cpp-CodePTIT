@@ -6,26 +6,8 @@ using namespace std;
 #pragma GCC target("avx2")
 
 #define endl            '\n'
-#define ll              long long
-#define ull             unsigned long long
-#define fi              first
-#define se              second
-#define rv              reverse
-#define pb              push_back
-#define sz              size
-
 #define faster()        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define tests()         int test_cases; cin >> test_cases; while (test_cases--)
-#define all(v)          v.begin(), v.end()
-#define set(x, n)       setw(x) << setfill('0') << n
-#define fixed(x, n)     fixed << setprecision(x) << n
-#define all_lower(s)    transform(all(s), s.begin(), ::tolower)
-#define all_upper(s)    transform(all(s), s.begin(), ::toupper)
-#define min_of(v)       *min_element(all(v))
-#define max_of(v)       *max_element(all(v))
-#define sum_of(v)       accumulate(all(v), 0ll)
-#define diff_of(v)      accumulate(all(v), std::minus<ll>())
-#define rsort(v)        sort(all(v), std::greater<int>())
 
 const int MOD = 1e9 + 7;
 
@@ -34,12 +16,29 @@ int main() {
     tests() {
         int n, k;
         cin >> n >> k;
-        vector<int> v(n);
+        int arr[n]; 
+        queue<int> q;
+        deque<int> dq;
 
-        for (int& i : v) cin >> i;
+        for (int i = 0; i < n; ++i) {
+            cin >> arr[i];
 
-        for (int i = 0; i <= n - k; ++i)
-            cout << *max_element(v.begin() + i, v.begin() + i + k) << ' ';
+            if (!dq.empty() && !(dq.front() ^ (i - k)))
+                dq.pop_front();
+
+            while (!dq.empty() && arr[dq.back()] < arr[i])
+                dq.pop_back();
+
+            dq.push_back(i);
+
+            if (i >= k - 1)
+                q.push(arr[dq.front()]);
+        }
+
+        while (!q.empty()) {
+            cout << q.front() << ' ';
+            q.pop();
+        }
 
         cout << endl;
     }   
