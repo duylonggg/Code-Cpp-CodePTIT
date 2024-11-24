@@ -6,19 +6,23 @@ int main() {
     int tc;
     cin >> tc;
     while (tc--) {
-        int n;
+        int n, min1 = INT_MAX, min2 = INT_MAX;;
         cin >> n;
-        set<int> st;
-        while (n--) {
-            int numb; 
-            cin >> numb;
-            st.insert(numb);
+        vector<int> v(n);
+        for (int& i : v) {
+            cin >> i;
+            if (i < min1) {
+                min2 = min1;
+                min1 = i;
+            }
+            else if (i > min1 and i < min2)
+                min2 = i;
         }
-        if (st.size() == 1) {
-            cout << -1 << endl;
-            continue;
-        }
-        cout << *st.begin() << ' ' << *next(st.begin()) << endl;
+        if (min2 == INT_MAX)
+            cout << -1;
+        else
+            cout << min1 << ' ' << min2;
+        cout << endl;
     }
     return 0;
 }
