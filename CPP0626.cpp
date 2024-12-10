@@ -8,7 +8,6 @@ class Lecture {
 private:
     string id;
     string name;
-    string lastName;
     string major;
 
 public:
@@ -19,19 +18,13 @@ public:
         ss_id << "GV" << setw(2) << setfill('0') << cnt++;
         lec.id = ss_id.str();
 
-        getline(is, lec.name);
+        getline(is >> ws, lec.name);
+        getline(is >> ws, lec.major); 
 
-        stringstream ss_name(lec.name);
         string word;
-        while (ss_name >> word) lec.lastName = word;
-
-        getline(is, lec.major); 
-
         stringstream ss_major(lec.major);
         lec.major = "";
-        while (ss_major >> word) {
-            lec.major += toupper(word[0]);
-        }
+        while (ss_major >> word) lec.major += toupper(word[0]);
 
         return is;
     }
@@ -41,15 +34,7 @@ public:
         return os;
     }
 
-    string getLastName() const {
-        return this->lastName;
-    }
-
-    string getID() const {
-        return this->id;
-    }
-
-    string getMajor() {
+    string getMajor() const {
         return this->major;
     }
 };
@@ -57,20 +42,16 @@ public:
 int main() {
     int n;
     cin >> n;
-    scanf("\n");
     vector<Lecture> v(n);
 
-    for (auto& lec : v) { 
+    for (auto& lec : v) 
         cin >> lec;
-        scanf("\n");
-    }
 
     int q;
     cin >> q;
     while (q--) {
-        scanf("\n");
         string major;
-        getline(cin, major);
+        getline(cin >> ws, major);
 
         string majorID = "", word;
         stringstream ss(major);
